@@ -1,0 +1,42 @@
+<p>{{errMessage()}}</p>
+
+<!-- 1. Bổ sung liên kết quay lại trang danh sách -->
+<p><a routerLink="/fashion-list">⬅ Quay lại danh sách Fashions</a></p>
+
+<!-- Khối tìm kiếm thủ công cũ giữ nguyên -->
+Fashion Id: <input type="text" #fashionId> 
+<button (click)="searchFashion(fashionId.value)">Search</button>
+
+<table border="1">
+  @if (fashion() != null) {
+    <!-- 2. Bổ sung hiển thị IdF (kiểu số tự tăng) -->
+    <tr>
+      <td>IdF:</td>
+      <td>{{fashion()?.IdF}}</td>
+    </tr>
+    <tr>
+      <td>Fashion Id (_id):</td>
+      <td>{{fashion()?._id}}</td>
+    </tr>
+    <!-- 3. Bổ sung hiển thị Slug -->
+    <tr>
+      <td>Slug:</td>
+      <td>{{fashion()?.slug}}</td>
+    </tr>
+    <tr>
+      <td>Fashion Subject:</td>
+      <td>{{fashion()?.fashion_subject}}</td>
+    </tr>
+    <tr>
+      <td>Fashion Detail:</td>
+      <td>{{fashion()?.fashion_detail}}</td>
+    </tr>
+    <tr>
+      <td colspan="2">
+        <img src="{{fashion()?.getBase64String()}}" width="150px">
+      </td>
+    </tr>
+  } @else {
+    <tr><td colspan="2">Not found Fashion</td></tr>
+  }
+</table>
